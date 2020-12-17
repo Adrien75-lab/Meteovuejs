@@ -15,10 +15,10 @@
         <h3 class="text-center mb-3">Position: {{temps.name}}</h3>
         <div class="card text-center p-5">
             <p class="texte-affichage">
-                Temperature :20°
+                Temperature : {{temps.main.temp}}
             </p>
             <p class="texte-affichage">
-                Temps : Nuageux
+                Temps : {{temps.weather[0].description}}
             </p>
             </div>
         </div>
@@ -40,10 +40,10 @@
             goMeteo(e){
                 if(e.key == "Enter"){
                     axios
-                    .get(`${this.url_recherche}q=${this.requete}&units=metric&APPID=${this.api_code}`)
+                    .get(`${this.url_recherche}q=${this.requete}&units=metric&APPID=${this.api_code}&lang=fr`)
                     .then(reponse => {
                         this.temps =reponse.data;
-                        console.log(reponse);
+                        this.temps = reponse.data;
 
                     })
                     this.requete = ''
@@ -53,5 +53,10 @@
     }
 </script>
 <style>
+.texte-affichage{
+    font-size:30px;
+    font-weight:300;
+    line-height:1.2;
+}
 
 </style>
